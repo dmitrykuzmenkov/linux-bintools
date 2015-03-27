@@ -1,4 +1,5 @@
 # kisstool
+Utilites that help in everydays tasks in development.
 
 ## minify
 Allows you to minify css and js files before you deploy it to production.
