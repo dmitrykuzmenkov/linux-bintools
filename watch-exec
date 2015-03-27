@@ -1,0 +1,31 @@
+#!/bin/bash
+if [[ -z $2 ]]; then
+  echo "Usage: $0 [path-to-watch] [command-to-execute]" && exit 255
+fi
+
+
+sha=0
+update_sha() {
+  sha=`ls -lR --time-style=full-iso $1 | sha1sum`
+}
+update_sha
+previous_sha=$sha
+compare() {
+  update_sha
+  if [[ $sha != $previous_sha ]] ; then
+    echo -n "sync..."
+    $1
+    previous_sha=$sha
+  else
+    echo -n .
+  fi
+}
+trap build SIGINT
+trap exit SIGQUIT
+
+echo -e  "--> Press Ctrl+C to force build, Ctrl+\\ to exit."
+echo -en "--> watching."
+while true; do
+  compare "$2"
+  sleep 1
+done
