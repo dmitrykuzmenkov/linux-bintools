@@ -13,3 +13,7 @@ You can use this as sync utility for special folder. For example using unison to
 watch-exec source "unison -batch source ssh://remote/source"
 ```
 That will run unison command if any file in folder source was changed.
+
+## bash-colors
+Display all colors to be used in your bash scripts
+Usage: bash-colors
