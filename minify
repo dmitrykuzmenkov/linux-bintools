@@ -13,11 +13,12 @@ fi
 
 # Reduce number of bytes
 code=$(cat $1 |
-  sed 's@/\*.*\*/@@g' | 
-  sed -r 's/\/\/.*$//g' | 
-  sed '/^$/d' | 
+  sed '/^\/\/.*/d' |
+  sed '/\/\*.*\*\//d' |
+  sed '/\/\*/,/*\//d;/^$/d;' |
+  sed '/^$/d' |
   tr '\n' ';' |
-  sed -r 's/^\s*//;s/\s*$//' | 
+  sed -r 's/^\s*//;s/\s*$//' |
   tr -s ' ' |
   sed -r 's/\}\;\}/\}\}/g' |
 
@@ -30,6 +31,8 @@ code=$(cat $1 |
   sed -r 's/\{;/\{/g' |
   # Replace semicolons
   sed -r 's/[\;\,]\}/\}/g' |
+  sed -r 's/(\[)\;/\1/g' |
+  sed -r 's/\;(\])/\1/g' |
   sed -r 's/\;+/\;/g' |
   sed -r 's/\;$//g' |
   sed -r 's/\,\;/\,/g'
@@ -37,7 +40,9 @@ code=$(cat $1 |
 
 # Special rules for js files
 if [[ ${1##*.} == 'js' ]]; then 
-  code=$(echo $code)
+  code=$(echo $code |
+    sed 's/\/\/.*\;//'
+  )
 fi
 
 # Special rules for css files
