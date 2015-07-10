@@ -17,3 +17,7 @@ That will run unison command if any file in folder source was changed.
 ## bash-colors
 Display all colors to be used in your bash scripts
 Usage: bash-colors
+
+## git-branch-all
+Show all branches on git repository with last commits and authors
+Usage: git-branch-all
