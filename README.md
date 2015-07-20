@@ -21,3 +21,4 @@ Usage: bash-colors
 ## git-branch-all
 Show all branches on git repository with last commits and authors
 Usage: git-branch-all
+Show remotes: git-branch-all --remote

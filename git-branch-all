@@ -1,2 +1,10 @@
 #!/bin/bash
-git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+refs='refs/heads/'
+for p in "$@"; do
+  case $p in
+    --remote)
+      refs='refs/remotes/origin/'
+      ;;
+  esac
+done
+git for-each-ref --sort=committerdate $refs --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
