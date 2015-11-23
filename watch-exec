@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [[ -z $2 ]]; then
   echo "Usage: $0 [path-to-watch] [command-to-execute]" && exit 255
 fi

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check command line arguments
 if [[ -z $1 ]]; then
@@ -39,7 +39,7 @@ code=$(cat $1 |
 )
 
 # Special rules for js files
-if [[ ${1##*.} == 'js' ]]; then 
+if [[ ${1##*.} == 'js' ]]; then
   code=$(echo $code |
     sed 's/\/\/.*\;//'
   )
