@@ -11,8 +11,8 @@ update_sha() {
 update_sha
 previous_sha=$sha
 compare() {
-  update_sha
-  if [[ $sha != $previous_sha ]] ; then
+  update_sha "$1"
+  if [[ "$sha" != "$previous_sha" ]] ; then
     echo -n "sync..."
     $1
     previous_sha=$sha
