@@ -22,3 +22,8 @@ Usage: bash-colors
 Show all branches on git repository with last commits and authors
 Usage: git-branch-all
 Show remotes: git-branch-all --remote
+
+## git-branch-squash
+Squash all commits in current branch since it was created using other branch
+Usage: git-branch-squash [branch]
+branch - branch that was used to create current branch to determine commits to squash. Default: master

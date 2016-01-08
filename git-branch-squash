@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+branch='master'
+if [[ -z "$1" ]]; then
+  branch="$1"
+fi
+
+count=$(git log --oneline ...master | wc -l | tr -d ' ')
+git rebase -i HEAD~$count
