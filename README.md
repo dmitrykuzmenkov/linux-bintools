@@ -28,6 +28,10 @@ Squash all commits in current branch since it was created using other branch
 Usage: git-branch-squash [branch]
 branch - branch that was used to create current branch to determine commits to squash. Default: master
 
+## git-tag-date
+Show all tags for current branch with its creation date
+Usage: git-tag-date
+
 ## swap-usage
 Show top proccesses and amount of swap they use.
 Usage: swap-usage
