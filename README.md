@@ -1,4 +1,4 @@
-# kisstool
+# linux-bintools
 Utilites that help in everydays tasks in development.
 
 ## minify
