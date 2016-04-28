@@ -8,7 +8,7 @@ for p in "$@"; do
       since="${p#*=}"
       ;;
     --until=*)
-      until="#{p#*=}"
+      until="${p#*=}"
       ;;
   esac
 done
