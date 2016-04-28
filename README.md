@@ -38,6 +38,10 @@ Usage: git-stat-summary --author=[git-name] --since=[git-date]
 git-name - Git commit author name or email
 git-date - Date to start searching for stat (git --since format)
 
+## git-commit-recent
+Show recent commit and branches where that commits were done
+Usage: git-commit-recent
+
 ## swap-usage
 Show top proccesses and amount of swap they use.
 Usage: swap-usage

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cur=$(git rev-parse --abbrev-ref HEAD)
+git for-each-ref --sort=-committerdate refs/heads/ --format='%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' | sed "s/m${cur}|/m* ${cur}|/" | column -ts'|'
