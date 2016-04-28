@@ -32,6 +32,12 @@ branch - branch that was used to create current branch to determine commits to s
 Show all tags for current branch with its creation date
 Usage: git-tag-date
 
+## git-summary-stat
+Show summary statistic of lines changes for special author since custom date
+Usage: git-summary-stat --author=[git-name] --since=[git-date]
+git-name - Git commit author name or email
+git-date - Date to start searching for stat (git --since format)
+
 ## swap-usage
 Show top proccesses and amount of swap they use.
 Usage: swap-usage
