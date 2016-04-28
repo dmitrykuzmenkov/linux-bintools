@@ -7,13 +7,17 @@ for p in "$@"; do
     --since=*)
       since="${p#*=}"
       ;;
+    --until=*)
+      until="#{p#*=}"
+      ;;
   esac
 done
 
 if [[ -z "$author" ]]; then
-  echo 'Usage git-summary-stat --author="author" [--since="date"]'
+  echo 'Usage git-summary-stat --author="author" [--since="date"] [--until="date"]'
   exit 1
 fi
 
 since=${since-10 year ago}
-git log --numstat --pretty="%H" --author="$author" --since="$since" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'
+until=${until-now}
+git log --numstat --pretty="%H" --author="$author" --since="$since" --until="$until" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'

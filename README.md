@@ -34,9 +34,10 @@ Usage: git-tag-date
 
 ## git-stat-summary
 Show summary statistic of lines changes for special author since custom date
-Usage: git-stat-summary --author=[git-name] --since=[git-date]
+Usage: git-stat-summary --author=[git-name] --since=[since-date] --until=[until-date]
 git-name - Git commit author name or email
-git-date - Date to start searching for stat (git --since format)
+since-date - Date to start searching for stat (git --since format) (optional)
+until-date - Date to end (git --until format) (optional)
 
 ## git-commit-recent
 Show recent commit and branches where that commits were done
