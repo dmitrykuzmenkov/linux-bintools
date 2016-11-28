@@ -30,26 +30,14 @@ fi
 # functions
 
 # Declare contanstats and PATHs
-STRUCT_FILE=${STRUCT_FILE:-$(pwd)/${database}_${table}_schema.sql}
-INDEX_FILE=${INDEX_FILE:-$(pwd)/${database}_${table}_index.sql}
-SCHEMA_NAME=$(< /dev/urandom tr -dc 'A-Z-a-z-0-9' | head -c8)
+SCHEMA_NAME=$(< /dev/urandom tr -dc 'A-Z-a-z' | head -c8)
 
 # Start the dance now
 current_schema=$(psql -t -c "SELECT current_schema();" $database)
 
-echo 'Dumping table structure and indexes'
-pg_dump --section=pre-data --no-tablespaces -s -t $table $database | sed "/^SET search_path = /s/$current_schema,/$SCHEMA_NAME,/g" > $STRUCT_FILE
-pg_dump --section=post-data --no-tablespaces -s -t $table $database | sed "/^SET search_path = /s/$current_schema,/$SCHEMA_NAME,/g" > $INDEX_FILE
-
-echo 'Loading structure to new schema'
+echo 'Loading table data to new schema'
 psql -c "CREATE SCHEMA $SCHEMA_NAME" $database
-psql -f $STRUCT_FILE $database
-
-echo 'Migrating data to new table'
-psql -c "INSERT INTO $SCHEMA_NAME.$table SELECT * FROM $current_schema.$table" $database
-
-echo 'Creating indexes on new table'
-psql -f $INDEX_FILE $database
+pg_dump -s -t $table $database | sed "/^SET search_path = /s/$current_schema,/$SCHEMA_NAME,/g" | psql $database
 
 echo 'Finishing with schema swaps and changing name of table'
 psql $database <<EOF
