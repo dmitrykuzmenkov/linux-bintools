@@ -30,7 +30,7 @@ fi
 # functions
 
 # Declare contanstats and PATHs
-SCHEMA_NAME=$(< /dev/urandom tr -dc 'A-Z-a-z' | head -c8)
+SCHEMA_NAME=$(< /dev/urandom tr -dc 'A-Za-z' | head -c8)
 
 # Start the dance now
 current_schema=$(psql -t -c "SELECT current_schema();" $database)
