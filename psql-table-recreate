@@ -32,7 +32,7 @@ fi
 # Declare contanstats and PATHs
 STRUCT_FILE=${STRUCT_FILE:-$(pwd)/${database}_${table}_schema.sql}
 INDEX_FILE=${INDEX_FILE:-$(pwd)/${database}_${table}_index.sql}
-SCHEMA_NAME="xxx"
+SCHEMA_NAME=$(< /dev/urandom tr -dc 'A-Z-a-z-0-9' | head -c8)
 
 # Start the dance now
 current_schema=$(psql -t -c "SELECT current_schema();" $database)
@@ -58,4 +58,3 @@ psql $database <<EOF
   ALTER TABLE ${SCHEMA_NAME}.${table} SET SCHEMA ${current_schema};
   DROP SCHEMA ${SCHEMA_NAME}, ${SCHEMA_NAME}_swap CASCADE;
 EOF
-
