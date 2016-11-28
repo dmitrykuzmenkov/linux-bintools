@@ -46,3 +46,7 @@ Usage: git-commit-recent
 ## swap-usage
 Show top proccesses and amount of swap they use.  
 Usage: swap-usage
+
+## psql-table-recreate
+Recreate existing table using other schema to optimize indexes usage
+Usage: psql-table-recreate --db=database --table=table
