@@ -37,7 +37,7 @@ current_schema=$(psql -t -c "SELECT current_schema();" $database)
 
 echo 'Loading table data to new schema'
 psql -c "CREATE SCHEMA $SCHEMA_NAME" $database
-pg_dump -s -t $table $database | sed "/^SET search_path = /s/$current_schema,/$SCHEMA_NAME,/g" | psql $database
+pg_dump -t $table $database | sed "/^SET search_path = /s/$current_schema,/$SCHEMA_NAME,/g" | psql $database
 
 echo 'Finishing with schema swaps and changing name of table'
 psql $database <<EOF
