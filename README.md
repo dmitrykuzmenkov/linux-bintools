@@ -50,3 +50,7 @@ Usage: swap-usage
 ## psql-table-recreate
 Recreate existing table using other schema to optimize indexes usage
 Usage: psql-table-recreate --db=database --table=table
+
+## shuffle
+Shuffle lines using pipe
+Usage: cat file | shuffle
